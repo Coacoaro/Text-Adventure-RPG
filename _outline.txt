@@ -1,49 +1,203 @@
-Characters {
-    player[
-        choose from trinity
-    ]
-    enemy[
-        mobs(
-            slime
-            knight
-        )
-        boss
-    ]
-    ally[
-        choose from trinity
-    ]
-    multiplayer
-}
-Inventory System
-Items{
-    weapons[
-        physical[
-            with ammo (
-
-            )
-            without ammo(
-
-            )
+Implementations
+    Characters {
+        player[
+            choose from trinity
         ]
-        non-physical[
-
+        enemy[
+            mobs(
+                slime
+                knight
+            )
+            boss
         ]
-    ]
-    buff
-    heal
-}
-Battle System {
-    turn based (pokemon type esque)
-    results screen
-}
-Game Mechanics {
-    level up system [
-        exp
-    ]
-    type advantage
-    party
-}
-Quest Log
+        ally[
+            choose from trinity
+        ]
+        multiplayer
+    }
+    Inventory System
+    Items{
+        weapons[
+            physical[
+                with ammo (
+
+                )
+                without ammo(
+
+                )
+            ]
+            non-physical[
+
+            ]
+        ]
+        buff
+        heal
+    }
+    Battle System {
+        turn based (pokemon type esque)
+        results screen
+    }
+    Game Mechanics {
+        level up system [
+            exp
+        ]
+        type advantage
+        party
+    }
+    Quest Log
+
+Improvements
+    Absolutely — here’s a **short checklist** of improvements you can track as you upgrade your project:
+
+    ---
+
+    ## ✅ Code Quality & Style
+
+    * [✔️] Use `const` for getters and read-only functions
+    * [✔️] Pass strings and large objects by `const reference` (`const std::string&`)
+    * [✔️] Use `isAlive()` instead of `getLife()` for clarity
+    * [ ] Replace magic numbers with named constants (`const int HEAL_AMOUNT = 6`)
+    * [ ] Clamp `health` and `stamina` using `MAX_HEALTH`, `MAX_STAMINA`
+
+    ---
+
+    ## ✅ Structure & Scalability
+
+    * [ ] Replace raw arrays (e.g., `Attack[2]`) with `std::vector<Attack>`
+    * [ ] Use `std::vector<std::string>` instead of raw `string[]` for menu options
+    * [ ] Replace raw player input `int` values with `enum class PlayerAction`
+    * [ ] Set up proper `MAX_HEALTH`, `MAX_STAMINA`, and level scaling support
+    * [ ] Use initializer list properly (avoid calling setters in constructor)
+
+    ---
+
+    ## ✅ Feedback & Gameplay Logic
+
+    * [ ] Print actual healed/recovered amounts (not just attempted value)
+    * [ ] Level-up system: implement overflow EXP handling
+    * [ ] Show status updates (damage dealt, remaining HP) after each turn
+
+    ---
+
+    ## ✅ Modern C++ Practices
+
+    * [ ] Replace `rand()` with `<random>` (e.g., `std::uniform_int_distribution`)
+    * [ ] Avoid using raw loops with size math (`sizeof(arr)/sizeof(arr[0])`)
+
+    ---
+
+    ## ✅ Code Structure & Reorganization
+
+        ### 🧱 **Modular Classes**
+
+        * [ ] Move game logic into a `Game` class (`run()`, `battle()`, `gameOver()`)
+        * [ ] Create a `Menu` or `UI` class to handle user input and display
+        * [ ] Expand `Attack` class to include name, stamina cost, and type
+        * [ ] (Optional) Add `Weapon` class for equipment and modifiers
+        * [ ] (Optional) Add `Inventory` class if you plan on items later
+
+        ---
+
+        ### 🗂️ **Project File Organization**
+
+        * [ ] Split each class into separate `.h` and `.cpp` files
+        * [ ] Keep main loop (`main.cpp`) clean and high-level
+        * [ ] Use header guards or `#pragma once` in all header files
+
+        ---
+
+        ### 🎯 **Class Responsibilities (SRP)**
+
+        * [ ] `Character`: Handles stats, health, attacks, leveling
+        * [ ] `Attack`: Represents an attack's power, cost, type
+        * [ ] `Game`: Controls game flow, enemy waves, and progression
+        * [ ] `Menu`: Manages menus, options, and stats display
+        * [ ] `main()`: Just creates a `Game` object and calls `game.run()`
+
+        ---
+
+    Let me know if you want a **starter template** for these classes, or a printable/markdown version of this full checklist.
+
+    Priority List
+        Perfect — since you’re trying to get **unstuck and focused**, I’ll break this checklist down into **4 clear priority levels**, in the order you should tackle them.
+
+        This will help you **not feel overwhelmed**, while still progressing toward clean, scalable code.
+
+        ---
+
+        ## ✅ PRIORITY LEVELS
+
+        ### 🟢 **Level 1 — Core Cleanups (Do These First)**
+
+        > 📌 Purpose: Learn good C++ habits and avoid bad patterns
+
+        * [ ] Use `const` for getters and read-only functions
+        * [ ] Pass large objects like `std::string` by `const reference`
+        * [ ] Rename `getLife()` to `isAlive()` for clarity
+        * [ ] Replace magic numbers with named constants (e.g., `const int HEAL_AMOUNT = 6`)
+        * [ ] Show status updates (damage dealt, remaining HP, healed amount)
+
+        ✅ These are **easy wins** — they help you write more readable, stable, and idiomatic code.
+
+        ---
+
+        ### 🟡 **Level 2 — Small Upgrades & Modernization**
+
+        > 📌 Purpose: Improve flexibility and avoid C-style code
+
+        * [ ] Replace raw arrays with `std::vector<Attack>`
+        * [ ] Use `std::vector<std::string>` for menu options
+        * [ ] Avoid `sizeof(arr)/sizeof(arr[0])` — use `.size()` instead
+        * [ ] Replace `rand()` with `<random>` for better randomness
+        * [ ] Use proper initializer list in constructors (avoid calling setters)
+
+        ✅ These teach you **modern C++ practices** and start making your code less error-prone.
+
+        ---
+
+        ### 🟠 **Level 3 — Gameplay & Mechanics**
+
+        > 📌 Purpose: Make the game more functional and fun
+
+        * [ ] Clamp health/stamina using `MAX_HEALTH`, `MAX_STAMINA`
+        * [ ] Implement level-up system and EXP overflow handling
+        * [ ] Expand `Attack` class with name, stamina cost, and type
+        * [ ] Add proper `MAX_HEALTH`, `MAX_STAMINA`, and level scaling
+        * [ ] Replace raw `int` inputs with `enum class PlayerAction`
+
+        ✅ These upgrades make your game more **interactive and complete**, while adding design challenges.
+
+        ---
+
+        ### 🔵 **Level 4 — Structure & Organization**
+
+        > 📌 Purpose: Prepare for long-term growth and learning
+
+        * [ ] Move logic into a `Game` class (handles turns, battle, game over)
+        * [ ] Create `Menu` or `UI` class for display and input
+        * [ ] Split classes into separate `.h` and `.cpp` files
+        * [ ] Keep `main()` minimal (just start `Game::run()`)
+        * [ ] Assign clear roles to each class (`Character`, `Attack`, `Game`, etc.)
+
+        ✅ This is where your code starts to look like **a real project** — scalable and easy to maintain.
+
+        ---
+
+        ## 🧭 What You Should Do *Now*
+
+        ### 🔹 Immediate Next Steps:
+
+        1. ✅ Clean up your getters and const usage (🟢 Level 1)
+        2. ✅ Replace raw arrays with vectors and fix input sizing (🟡 Level 2)
+        3. ✅ Clamp health/stamina and improve combat feedback (🟠 Level 3)
+
+        > These are fast to do and build momentum.
+        > Once that’s done, start thinking about the `Game` class (🔵 Level 4).
+
+        ---
+
+        Would you like me to convert this into a **trackable checklist markdown** file for GitHub or your notes?
+
 {
     Skip to content
     Chat history
