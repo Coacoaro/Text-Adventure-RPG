@@ -7,4 +7,4 @@ Attack::Attack(int amount) {
 // Attack(int amount, Weapon &weapon) {}
 
 const int Attack::getAmount() const {return amount;}
-const int Attack::staminaUsed() const {return staminaNeeded;}
+const int Attack::energyUsed() const {return energyNeeded;}

@@ -40,7 +40,7 @@ void BattleState(Character& player, Character& enemy) {
                 player.attack(enemy, player.getAttack(1));
                 break;
             case 2:
-                player.recoverStamina(3);
+                player.recoverEnergy(3);
                 break;
             case 3:
                 player.recoverHp(6);
@@ -50,7 +50,7 @@ void BattleState(Character& player, Character& enemy) {
                 enemy.stats();
                 continue;
         }
-        player.recoverStamina(1);
+        player.recoverEnergy(1);
 
         // Comp Turn
         choice = rand() % 4;
@@ -62,13 +62,13 @@ void BattleState(Character& player, Character& enemy) {
                 enemy.attack(player, enemy.getAttack(1));
                 break;
             case 2:
-                enemy.recoverStamina(3);
+                enemy.recoverEnergy(3);
                 break;
             case 3:
                 enemy.recoverHp(6);
                 break;
         }
-        enemy.recoverStamina(1);
+        enemy.recoverEnergy(1);
 
     } while (player.isAlive() && enemy.isAlive());
 
