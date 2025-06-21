@@ -17,14 +17,14 @@ private:
 
 protected:
 const int HP_BASE = 20;
-const int HP_SCALE = 1.05;
+const double HP_SCALE = 1.05;
 const int ENERGY_BASE = 10;
-const int ENERGY_SCALE = 1.03;
+const double ENERGY_SCALE = 1.03;
 const int DAMAGE_BASE = 2;
-const int DAMAGE_SCALE = 1.07;
+const double DAMAGE_SCALE = 1.07;
 const int LEVEL_BASE = 1;
 const int XP_BASE = 30; // Base xp threshold
-const int XP_SCALE = 1.06;
+const double XP_SCALE = 1.06;
 int HP_MAX;  // Max hp for a given level
 int ENERGY_MAX; // Max energy for given level
 const int MAX_LEVEL = 100;    // Max possible level
